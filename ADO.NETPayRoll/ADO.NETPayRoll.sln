@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.NETPayRoll", "ADO.NETPayRoll.csproj", "{F95C1B87-1D93-4408-8CD0-9EFE868F1DAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ADO.NETPayRoll", "ADO.NETPayRoll.csproj", "{F95C1B87-1D93-4408-8CD0-9EFE868F1DAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateTesting", "..\UpdateTesting\UpdateTesting.csproj", "{60BF22B1-FEBF-4751-A0EC-3768CD4C8305}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F95C1B87-1D93-4408-8CD0-9EFE868F1DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F95C1B87-1D93-4408-8CD0-9EFE868F1DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F95C1B87-1D93-4408-8CD0-9EFE868F1DAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60BF22B1-FEBF-4751-A0EC-3768CD4C8305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60BF22B1-FEBF-4751-A0EC-3768CD4C8305}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60BF22B1-FEBF-4751-A0EC-3768CD4C8305}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60BF22B1-FEBF-4751-A0EC-3768CD4C8305}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
