@@ -6,7 +6,9 @@ namespace ADO.NETPayRoll
         public static void Main(string[] args)
         {
             ADO.NETPayRoll.EmployeePayRoll value = new ADO.NETPayRoll.EmployeePayRoll();
-            value.DatabseConnection();
+
+            //value.DatabseConnection();
+            value.GetAllEmployee();
         }
     }
 }

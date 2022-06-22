@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -7,28 +9,67 @@ using System.Threading.Tasks;
 
 namespace ADO.NETPayRoll
 {
-    internal class EmployeePayRoll
+    public class EmployeePayRoll
     {
         public static string dbpath = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=employ_PayRoll;Integrated Security=True";
-        SqlConnection connect = new SqlConnection(dbpath);
+        SqlConnection Connection = new SqlConnection(dbpath);
+
         //Fuction to check DB connection Establishment
         public void DatabseConnection()
         {
             try
             {
-                connect.Open();
-                using (connect)
+                Connection.Open();
+                using (Connection)
                 {
                     Console.WriteLine("Database connectivity successful.");
                 }
-                connect.Close();
+                Connection.Close();
             }
             catch
             {
                 Console.WriteLine("Database connectivity failed");
             }
         }
+        public void GetAllEmployee()
+        {
+
+
+            ModelClass model = new ModelClass();
+            using (Connection)
+            {
+                string query = @"SELECT * FROM employ_PayRoll;";
+                SqlCommand cmd = new SqlCommand(query, Connection);
+                Connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+
+
+                if (reader.HasRows)
+                {
+                    Console.WriteLine("ID\t|\tNAME\t|\tSALARY\t\t|\tSTART\n------------------------------------------------------------------------------");
+                    while (reader.Read())
+                    {
+                        model.ID = reader.GetInt32(0);
+                        model.NAME = reader.GetString(1);
+                        model.SALARY = reader.GetDouble(2);
+                        model.START = reader.GetDateTime(3);
+                        Console.WriteLine(model.ID + "\t|\t" + model.NAME + "\t|\t" + model.SALARY + "\t|\t" + model.START);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Records not found in Database.");
+                }
+                reader.Close();
+
+            }
+            Connection.Close();
+        }
+
 
     }
 }
+
+
 
