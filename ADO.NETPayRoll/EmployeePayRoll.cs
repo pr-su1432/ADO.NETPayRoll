@@ -12,19 +12,19 @@ namespace ADO.NETPayRoll
     public class EmployeePayRoll
     {
         public static string dbpath = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=employ_PayRoll;Integrated Security=True";
-        SqlConnection Connection = new SqlConnection(dbpath);
+        SqlConnection Connect = new SqlConnection(dbpath);
 
       
         public void DatabseConnection()
         {
             try
             {
-                Connection.Open();
-                using (Connection)
+                Connect.Open();
+                using (Connect)
                 {
                     Console.WriteLine("Database connectivity successful.");
                 }
-                Connection.Close();
+                Connect.Close();
             }
             catch
             {
@@ -36,11 +36,11 @@ namespace ADO.NETPayRoll
 
 
             ModelClass model = new ModelClass();
-            using (Connection)
+            using (Connect)
             {
                 string query = @"SELECT * FROM employ_PayRoll;";
-                SqlCommand cmd = new SqlCommand(query, Connection);
-                Connection.Open();
+                SqlCommand cmd = new SqlCommand(query, Connect);
+                Connect.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
 
@@ -64,7 +64,7 @@ namespace ADO.NETPayRoll
                 reader.Close();
 
             }
-            Connection.Close();
+            Connect.Close();
         }
         public void updateRecords()
         {
@@ -88,6 +88,44 @@ namespace ADO.NETPayRoll
             catch (FormatException)
             {
                 Console.WriteLine("-----\nError:Records are not updated.\n-------------");
+            }
+        }
+        public void createARecord()
+        {
+            SqlConnection connect = new SqlConnection(dbpath);
+            using (Connect)
+            {
+                Connect.Open();
+                ADO.NETPayRoll.ModelClass model = new ADO.NETPayRoll.ModelClass();
+                Console.WriteLine("Name of Employee:");
+                model.NAME = Console.ReadLine();
+                Console.WriteLine("salary of Employee:");
+                model.SALARY = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Start Date of Employee:");
+                model.START = DateTime.Now;
+                Console.WriteLine("Gender of Employee:");
+                model.gender = Console.ReadLine();
+                Console.WriteLine("phone num of Employee:");
+                model.PHONENO = Convert.ToDecimal(Console.ReadLine());
+                Console.WriteLine("Address of Employee:");
+                model.ADDRESS = Console.ReadLine();
+                Console.WriteLine("Department of Employee:");
+                model.DEPARTMENT = Console.ReadLine();
+                Console.WriteLine("Basic Pay of Employee:");
+                model.BASIC_PAY = Convert.ToDouble(Console.ReadLine());
+                SqlCommand exp = new SqlCommand("SpAddEmployeeDetails", connect);
+                exp.CommandType = CommandType.StoredProcedure;
+                exp.Parameters.AddWithValue("@ID", model.ID);
+                exp.Parameters.AddWithValue("@Name", model.NAME);
+                exp.Parameters.AddWithValue("@start", model.START);
+                exp.Parameters.AddWithValue("@Gender", model.gender);
+                exp.Parameters.AddWithValue("@PHONENO", model.PHONENO);
+                exp.Parameters.AddWithValue("@ADDRESS", model.ADDRESS);
+                exp.Parameters.AddWithValue("@DEPARTMENT", model.DEPARTMENT);
+                exp.Parameters.AddWithValue("@BASIC_PAY", model.BASIC_PAY);
+                exp.ExecuteNonQuery();
+                Console.WriteLine("Record created successfully.");
+                Connect.Close();
             }
         }
 

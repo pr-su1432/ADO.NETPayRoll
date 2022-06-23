@@ -8,9 +8,13 @@ namespace ADO.NETPayRoll
             ADO.NETPayRoll.EmployeePayRoll value = new ADO.NETPayRoll.EmployeePayRoll();
 
             //value.DatabseConnection();
-           // value.GetAllEmployeeData();
-            value.updateRecords();
+            // value.GetAllEmployeeData();
+           // value.updateRecords();
+            //value.GetAllEmployeeData();
+            value.createARecord();
             value.GetAllEmployeeData();
+            
         }
+            
     }
 }
