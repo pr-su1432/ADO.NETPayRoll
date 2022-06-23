@@ -128,7 +128,21 @@ namespace ADO.NETPayRoll
                 Connect.Close();
             }
         }
+        public void DeleteDetails()
+        {
+            SqlConnection connect = new SqlConnection(dbpath);
+            using (connect)
+            {
+                connect.Open();
+                Console.WriteLine("Enter name of employee to  delete from details:");
+                string name = Console.ReadLine();
+                string query = "delete from employ_PayRoll where NAME='" + name + "'";
+                SqlCommand command = new SqlCommand(query, connect);
+                command.ExecuteNonQuery();
+                connect.Close();
+            }
 
+        }
 
     }
 }

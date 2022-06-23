@@ -12,8 +12,9 @@ namespace ADO.NETPayRoll
            // value.updateRecords();
             //value.GetAllEmployeeData();
             value.createARecord();
-            value.GetAllEmployeeData();
-            
+           // value.GetAllEmployeeData();
+           // value.DeleteDetails();
+           
         }
             
     }
